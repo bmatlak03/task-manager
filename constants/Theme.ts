@@ -1,12 +1,17 @@
+"use client";
 export const colors = {
   primary: {
     dark: {
       main: "#635FC7",
       light: "#A8A4FF",
+      dark: "#828FA3",
+      contrastText: "#FFFFFF",
     },
     light: {
       main: "#635FC7",
       light: "#A8A4FF",
+      dark: "#828FA3",
+      contrastText: "#FFFFFF",
     },
   },
   secondary: {
@@ -19,11 +24,11 @@ export const colors = {
   },
   background: {
     dark: {
-      default: "#F4F7FD",
+      default: "#20212C",
       paper: "#2B2C37",
     },
     light: {
-      default: "#20212C",
+      default: "#F4F7FD",
       paper: "#FFFFFF",
     },
   },
