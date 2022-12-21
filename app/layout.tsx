@@ -2,6 +2,7 @@
 import { CssBaseline } from "@mui/material";
 import { Provider } from "react-redux";
 import CustomTheme from "../components/CustomTheme/CustomTheme";
+import Header from "../components/Header/Header";
 import { store } from "../store";
 
 export default function RootLayout({
@@ -29,7 +30,10 @@ export default function RootLayout({
       <Provider store={store}>
         <CustomTheme>
           <CssBaseline />
-          <body>{children}</body>
+          <body>
+            <Header />
+            <main>{children}</main>
+          </body>
         </CustomTheme>
       </Provider>
     </html>
