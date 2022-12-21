@@ -1,3 +1,4 @@
+"use client";
 import { Button, ButtonProps, styled } from "@mui/material";
 
 export const StyledButton = styled(Button)<ButtonProps>(({ theme }) => ({
