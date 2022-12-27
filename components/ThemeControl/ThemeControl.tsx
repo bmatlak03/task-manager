@@ -4,12 +4,8 @@ import {
   LightMode as LightModeIcon,
   DarkMode as DarkModeIcon,
 } from "@mui/icons-material";
-import { useAppDispatch } from "../../store";
-import {
-  PaletteMode,
-  selectThemeMode,
-  toggleTheme,
-} from "../../store/themeSlice";
+import { useAppDispatch } from "store";
+import { PaletteMode, selectThemeMode, toggleTheme } from "store/themeSlice";
 import { useSelector } from "react-redux";
 
 const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
@@ -24,7 +20,7 @@ const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
   color: theme.palette.primary.dark,
 }));
 
-export default function ThemeControl() {
+export const ThemeControl = () => {
   const dispatch = useAppDispatch();
   const themeMode = useSelector(selectThemeMode);
   const handleChangeTheme = () => dispatch(toggleTheme());
@@ -39,4 +35,4 @@ export default function ThemeControl() {
       <DarkModeIcon />
     </StyledBox>
   );
-}
+};

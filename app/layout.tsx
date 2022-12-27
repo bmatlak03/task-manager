@@ -1,9 +1,9 @@
 "use client";
 import { CssBaseline } from "@mui/material";
+import { CustomTheme } from "components/CustomTheme";
+import { Header } from "components/Header";
 import { Provider } from "react-redux";
-import CustomTheme from "../components/CustomTheme/CustomTheme";
-import Header from "../components/Header/Header";
-import { store } from "../store";
+import { store } from "store";
 
 export default function RootLayout({
   children,

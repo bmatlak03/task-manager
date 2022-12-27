@@ -2,14 +2,10 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { PropsWithChildren, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { colors } from "../../constants/Theme";
-import { useAppDispatch } from "../../store";
-import {
-  PaletteMode,
-  selectThemeMode,
-  setThemeMode,
-} from "../../store/themeSlice";
 import { Plus_Jakarta_Sans } from "@next/font/google";
+import { PaletteMode, selectThemeMode, setThemeMode } from "store/themeSlice";
+import { colors } from "constants/Theme";
+import { useAppDispatch } from "store";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   weight: ["400", "700"],
@@ -17,7 +13,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
-export default function CustomTheme({ children }: PropsWithChildren) {
+export const CustomTheme = ({ children }: PropsWithChildren) => {
   const mode = useSelector(selectThemeMode);
 
   const theme = createTheme({
@@ -44,4 +40,4 @@ export default function CustomTheme({ children }: PropsWithChildren) {
   }, [mode]);
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-}
+};

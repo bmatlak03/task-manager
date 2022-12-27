@@ -1,20 +1,15 @@
 "use client";
 import { Button, Menu, Typography } from "@mui/material";
-import {
-  BoardIcon,
-  ChevronDown,
-  DotsIcon,
-  Logo,
-  PlusIcon,
-} from "../../assets/icons";
+import { BoardIcon, ChevronDown, DotsIcon, Logo, PlusIcon } from "assets/icons";
 import { useState } from "react";
-import ThemeControl from "../ThemeControl/ThemeControl";
+import { boardData } from "constants/BoardData";
+import { StyledButton } from "components/StyledButton";
 import { LogoButton, StyledHeader, StyledMenuItem } from "./styled";
-import { StyledButton } from "../StyledButton/StyledButton";
+import { ThemeControl } from "components/ThemeControl";
 
-const boards = ["Platform Launch", "Marketing Plan", "Roadmap"];
+const boards = boardData.map((board) => board.name);
 
-export default function Header() {
+export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
   const isOpen = Boolean(anchorEl);
@@ -105,4 +100,4 @@ export default function Header() {
       </Menu>
     </StyledHeader>
   );
-}
+};
