@@ -1,5 +1,5 @@
 "use client";
-import { Button, Menu, Typography } from "@mui/material";
+import { Button, Menu } from "@mui/material";
 import { BoardIcon, ChevronDown, DotsIcon, Logo, PlusIcon } from "assets/icons";
 import { useState } from "react";
 import { boardData } from "constants/BoardData";
@@ -9,6 +9,7 @@ import { ThemeControl } from "components/ThemeControl";
 import { useAppDispatch } from "store";
 import { changeBoard, selectCurrentBoard } from "store/boardSlice";
 import { useSelector } from "react-redux";
+import { Caption } from "components/UI/Typography";
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -37,7 +38,7 @@ export const Header = () => {
   };
 
   return (
-    <StyledHeader position="static">
+    <StyledHeader position="sticky">
       <Logo />
       <LogoButton onClick={handleClickListItem}>
         <span>{selectedBoard.name}</span>{" "}
@@ -79,17 +80,9 @@ export const Header = () => {
           sx: menuListStyles,
         }}
       >
-        <Typography
-          color="primary.dark"
-          fontWeight="bold"
-          pl="16px"
-          fontSize={12}
-          lineHeight="15.12px"
-          letterSpacing={2.4}
-          textTransform="uppercase"
-        >
+        <Caption pl="16px" letterSpacing={2.4} textTransform="uppercase">
           All boards ({boardData.length})
-        </Typography>
+        </Caption>
         {boardData.map((board) => (
           <StyledMenuItem
             key={board.name}
