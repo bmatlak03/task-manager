@@ -6,19 +6,22 @@ import { boardData } from "constants/BoardData";
 import { StyledButton } from "components/StyledButton";
 import { LogoButton, StyledHeader, StyledMenuItem } from "./styled";
 import { ThemeControl } from "components/ThemeControl";
-
-const boards = boardData.map((board) => board.name);
+import { useAppDispatch } from "store";
+import { changeBoard, selectCurrentBoard } from "store/boardSlice";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
   const isOpen = Boolean(anchorEl);
+
+  const selectedBoard = useSelector(selectCurrentBoard);
+  const dispatch = useAppDispatch();
 
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleMenuItemClick = (index: number) => {
-    setSelectedIndex(index);
+  const handleMenuItemClick = (name: string) => {
+    dispatch(changeBoard(name));
     setAnchorEl(null);
   };
 
@@ -37,7 +40,7 @@ export const Header = () => {
     <StyledHeader position="static">
       <Logo />
       <LogoButton onClick={handleClickListItem}>
-        <span>{boards[selectedIndex]}</span>{" "}
+        <span>{selectedBoard.name}</span>{" "}
         <ChevronDown direction={isOpen ? "down" : "up"} />
       </LogoButton>
       <StyledButton
@@ -85,15 +88,15 @@ export const Header = () => {
           letterSpacing={2.4}
           textTransform="uppercase"
         >
-          All boards ({boards.length})
+          All boards ({boardData.length})
         </Typography>
-        {boards.map((board, index) => (
+        {boardData.map((board) => (
           <StyledMenuItem
-            key={board}
-            selected={index === selectedIndex}
-            onClick={() => handleMenuItemClick(index)}
+            key={board.name}
+            selected={board.name === selectedBoard.name}
+            onClick={() => handleMenuItemClick(board.name)}
           >
-            <BoardIcon /> <span>{board}</span>
+            <BoardIcon /> <span>{board.name}</span>
           </StyledMenuItem>
         ))}
         <ThemeControl />

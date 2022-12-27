@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import themeSlice from "./themeSlice";
+import boardSlice from "./boardSlice";
 
 export const store = configureStore({
   reducer: {
     themeSlice,
+    boardSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({}),
 });
