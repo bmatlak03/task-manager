@@ -1,10 +1,6 @@
 "use client";
-import { Typography } from "@mui/material";
+import { Board } from "components/Board";
 
 export default function Home() {
-  return (
-    <div>
-      <Typography>Homepage!</Typography>
-    </div>
-  );
+  return <Board />;
 }
