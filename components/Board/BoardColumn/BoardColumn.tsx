@@ -26,7 +26,7 @@ export const BoardColumn = ({ columnData, dotColor }: BoardColumnProps) => {
               <Typography fontSize={15} lineHeight="18.9px" fontWeight="bold">
                 {task.title}
               </Typography>
-              <Caption>{task.description}</Caption>
+              {task.description && <Caption>{task.description}</Caption>}
             </StyledCard>
           </CardActionArea>
         ))}
