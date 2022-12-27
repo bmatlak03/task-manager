@@ -9,6 +9,13 @@ import {
   selectThemeMode,
   setThemeMode,
 } from "../../store/themeSlice";
+import { Plus_Jakarta_Sans } from "@next/font/google";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  weight: ["400", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+});
 
 export default function CustomTheme({ children }: PropsWithChildren) {
   const mode = useSelector(selectThemeMode);
@@ -22,7 +29,7 @@ export default function CustomTheme({ children }: PropsWithChildren) {
       error: colors.error,
     },
     typography: {
-      fontFamily: ["Plus Jakarta Sans"].join(","),
+      fontFamily: plusJakartaSans.style.fontFamily,
     },
   });
 

@@ -1,5 +1,10 @@
 "use client";
+import { Typography } from "@mui/material";
 
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <Typography>Homepage!</Typography>
+    </div>
+  );
 }
