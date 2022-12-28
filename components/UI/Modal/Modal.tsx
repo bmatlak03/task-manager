@@ -6,7 +6,7 @@ const StyledModal = styled(Box)<BoxProps>(({ theme }) => ({
   flexDirection: "column",
   justifyContent: "center",
   width: "80vw",
-  maxWidth: "700px",
+  maxWidth: "480px",
   height: "100%",
   gap: "24px",
   padding: "24px",
