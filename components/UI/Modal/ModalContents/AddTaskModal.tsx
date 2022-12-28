@@ -1,69 +1,87 @@
+import { Close as CloseIcon } from "@mui/icons-material";
 import {
-  Box,
-  BoxProps,
-  Button,
-  ButtonProps,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   OutlinedInput,
   Select,
-  styled,
   TextField,
   Typography,
 } from "@mui/material";
 import { PlusIcon } from "assets/icons";
+import { Subtitle } from "components/UI/Typography";
 import { inputPlaceholders } from "constants/Input";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentBoard } from "store/boardSlice";
+import { FieldWrapper, ModalButton } from "./styled/Styled";
 
 interface AddTaskModalProps {}
 
-const Container = styled(Box)<BoxProps>(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  height: "100%",
-  gap: "24px",
-  padding: "24px",
-}));
-
-const StyledButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  borderRadius: 15,
-  textTransform: "none",
-  fontWeight: "bold",
-}));
+type NewSubtask = {
+  id: number;
+  name: string;
+};
 
 export const AddTaskModal = ({}: AddTaskModalProps) => {
+  const [subtasks, setSubtasks] = useState<NewSubtask[]>([]);
   const currentBoard = useSelector(selectCurrentBoard);
 
+  const handleAddSubtask = () => {
+    setSubtasks((prevState) => [
+      ...subtasks,
+      {
+        id: prevState.length === 0 ? 0 : prevState[prevState.length - 1].id + 1,
+        name: "",
+      },
+    ]);
+  };
+
+  const handleRemoveSubtask = (id: number) =>
+    setSubtasks((prevState) =>
+      prevState.filter((subtask) => subtask.id !== id)
+    );
+
   return (
-    <Container>
+    <>
       <Typography fontWeight="bold" fontSize={18} lineHeight="23px">
         Add New Task
       </Typography>
-      <Typography fontWeight="bold" fontSize={12} lineHeight="15px">
-        Title
-      </Typography>
+      <Subtitle>Title</Subtitle>
       <TextField
         variant="outlined"
         size="small"
         placeholder={inputPlaceholders.title}
       />
-      <Typography fontWeight="bold" fontSize={12} lineHeight="15px">
-        Description
-      </Typography>
+      <Subtitle>Description</Subtitle>
       <TextField
         variant="outlined"
         multiline
         placeholder={inputPlaceholders.description}
       />
-      <Typography fontWeight="bold" fontSize={12} lineHeight="15px">
-        Subtasks
-      </Typography>
-      <StyledButton color="secondary" variant="contained">
+      <Subtitle>Subtasks</Subtitle>
+      {subtasks.map((subtask) => (
+        <FieldWrapper>
+          <TextField
+            variant="outlined"
+            size="small"
+            placeholder={inputPlaceholders.title}
+            value={subtask.name}
+            fullWidth
+          />
+          <IconButton onClick={() => handleRemoveSubtask(subtask.id)}>
+            <CloseIcon />
+          </IconButton>
+        </FieldWrapper>
+      ))}
+      <ModalButton
+        color="secondary"
+        variant="contained"
+        onClick={handleAddSubtask}
+      >
         <PlusIcon /> <span style={{ marginLeft: "12px" }}>Add New Subtask</span>
-      </StyledButton>
+      </ModalButton>
       <FormControl>
         <InputLabel id="status-label">Status</InputLabel>
         <Select
@@ -80,7 +98,7 @@ export const AddTaskModal = ({}: AddTaskModalProps) => {
           ))}
         </Select>
       </FormControl>
-      <StyledButton variant="contained">Create Task</StyledButton>
-    </Container>
+      <ModalButton variant="contained">Create Task</ModalButton>
+    </>
   );
 };
