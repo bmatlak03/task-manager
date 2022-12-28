@@ -4,6 +4,7 @@ import { Modal } from "components/UI/Modal";
 import {
   AddBoardModal,
   AddTaskModal,
+  DeleteModal,
   ViewTaskModal,
 } from "components/UI/Modal/ModalContents";
 import { ModalContent } from "constants/ModalContent";
@@ -55,6 +56,8 @@ export const Board = () => {
           )}
           {modalContent === ModalContent.ADD_TASK && <AddTaskModal />}
           {modalContent === ModalContent.ADD_BOARD && <AddBoardModal />}
+          {/* should be dynamic value from slice */}
+          {modalContent === ModalContent.DELETE && <DeleteModal type="board" />}
         </Modal>
       </BoardContainer>
     </>

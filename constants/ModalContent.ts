@@ -5,6 +5,5 @@ export enum ModalContent {
   EDIT_TASK,
   ADD_BOARD,
   EDIT_BOARD,
-  DELETE_BOARD,
-  DELETE_TASK,
+  DELETE,
 }
