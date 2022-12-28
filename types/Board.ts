@@ -3,10 +3,16 @@ export interface SubTask {
   isCompleted: boolean;
 }
 
+export enum TaskStatus {
+  TODO = "Todo",
+  DOING = "Doing",
+  DONE = "Done",
+}
+
 export interface Task {
   title: string;
   description?: string;
-  status: string;
+  status: TaskStatus;
   subtasks: SubTask[];
 }
 
