@@ -1,6 +1,6 @@
 "use client";
 import { Box, CardActionArea, Typography } from "@mui/material";
-import { Caption } from "components/UI/Typography";
+import { Subtitle } from "components/UI/Typography";
 import { ModalContent } from "constants/ModalContent";
 import { useAppDispatch } from "store";
 import {
@@ -29,9 +29,9 @@ export const BoardColumn = ({ columnData, dotColor }: BoardColumnProps) => {
       <Box>
         <TitleContainer>
           <Dot bgcolor={dotColor} />
-          <Caption letterSpacing={2.4} textTransform="uppercase">
+          <Subtitle letterSpacing={2.4} textTransform="uppercase">
             {columnData.name} ({columnData.tasks.length})
-          </Caption>
+          </Subtitle>
         </TitleContainer>
 
         <StyledList>
@@ -44,7 +44,9 @@ export const BoardColumn = ({ columnData, dotColor }: BoardColumnProps) => {
                 <Typography fontSize={15} lineHeight="18.9px" fontWeight="bold">
                   {task.title}
                 </Typography>
-                {task.description && <Caption>{task.description}</Caption>}
+                {task.description && (
+                  <Subtitle color="primary.dark">{task.description}</Subtitle>
+                )}
               </StyledCard>
             </CardActionArea>
           ))}

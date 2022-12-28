@@ -13,7 +13,7 @@ import { ThemeControl } from "components/ThemeControl";
 import { useAppDispatch } from "store";
 import { changeBoard, selectCurrentBoard } from "store/boardSlice";
 import { useSelector } from "react-redux";
-import { Caption } from "components/UI/Typography";
+import { Subtitle } from "components/UI/Typography";
 import { setIsModalVisible, setModalContent } from "store/uiSlice";
 import { ModalContent } from "constants/ModalContent";
 
@@ -88,9 +88,9 @@ export const Header = () => {
           sx: menuListStyles,
         }}
       >
-        <Caption pl="16px" letterSpacing={2.4} textTransform="uppercase">
+        <Subtitle pl="16px" letterSpacing={2.4} textTransform="uppercase">
           All boards ({boardData.length})
-        </Caption>
+        </Subtitle>
         {boardData.map((board) => (
           <StyledMenuItem
             key={board.name}
