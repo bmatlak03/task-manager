@@ -42,7 +42,7 @@ export const AddBoardModal = ({}: AddBoardModalProps) => {
       />
       <Subtitle>Board Columns</Subtitle>
       {columns.map((column) => (
-        <FieldWrapper>
+        <FieldWrapper key={column.id}>
           <TextField
             variant="outlined"
             size="small"

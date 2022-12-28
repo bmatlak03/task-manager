@@ -62,7 +62,7 @@ export const AddTaskModal = ({}: AddTaskModalProps) => {
       />
       <Subtitle>Subtasks</Subtitle>
       {subtasks.map((subtask) => (
-        <FieldWrapper>
+        <FieldWrapper key={subtask.id}>
           <TextField
             variant="outlined"
             size="small"
