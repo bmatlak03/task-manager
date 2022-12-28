@@ -21,6 +21,7 @@ export const colors = {
     },
     light: {
       main: "#E4EBFA",
+      contrastText: "#635FC7",
     },
   },
   background: {
