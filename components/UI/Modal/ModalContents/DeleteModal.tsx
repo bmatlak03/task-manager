@@ -26,7 +26,7 @@ export const DeleteModal = ({ type }: DeleteModalProps) => {
   };
   return (
     <>
-      <Title color="error.main">Delete this board?</Title>
+      <Title color="error.main">Delete this {type}?</Title>
       <Typography color="primary.dark" fontSize={13} lineHeight="23px">
         {errorMessage[type]}
       </Typography>
