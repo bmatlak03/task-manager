@@ -16,7 +16,7 @@ import { DotsIcon } from "assets/icons";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentBoard } from "store/boardSlice";
-import { Task, TaskStatus } from "types";
+import { Task } from "types";
 
 interface ViewTaskModalProps {
   task: Task;
@@ -45,7 +45,7 @@ export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
       target: { value },
     } = event;
 
-    setTaskStatus(value as TaskStatus);
+    setTaskStatus(value);
   };
 
   return (
