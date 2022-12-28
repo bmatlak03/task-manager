@@ -45,3 +45,11 @@ export const StyledMenuItem = styled(MenuItem)<MenuItemProps>(({ theme }) => ({
     borderBottomRightRadius: 15,
   },
 }));
+
+export const StyledButton = styled(Button)<ButtonProps>(({ theme }) => ({
+  borderRadius: 15,
+  padding: 0,
+  width: "48px",
+  height: "32px",
+  marginLeft: "auto",
+}));

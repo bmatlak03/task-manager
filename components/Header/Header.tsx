@@ -3,13 +3,19 @@ import { Button, Menu } from "@mui/material";
 import { BoardIcon, ChevronDown, DotsIcon, Logo, PlusIcon } from "assets/icons";
 import { useState } from "react";
 import { boardData } from "constants/BoardData";
-import { StyledButton } from "components/StyledButton";
-import { LogoButton, StyledHeader, StyledMenuItem } from "./styled";
+import {
+  LogoButton,
+  StyledButton,
+  StyledHeader,
+  StyledMenuItem,
+} from "./styled";
 import { ThemeControl } from "components/ThemeControl";
 import { useAppDispatch } from "store";
 import { changeBoard, selectCurrentBoard } from "store/boardSlice";
 import { useSelector } from "react-redux";
 import { Caption } from "components/UI/Typography";
+import { setIsModalVisible, setModalContent } from "store/uiSlice";
+import { ModalContent } from "constants/ModalContent";
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -30,6 +36,11 @@ export const Header = () => {
     setAnchorEl(null);
   };
 
+  const handleAddTask = () => {
+    dispatch(setModalContent(ModalContent.ADD_TASK));
+    dispatch(setIsModalVisible(true));
+  };
+
   const menuListStyles = {
     display: "flex",
     flexDirection: "column",
@@ -44,15 +55,7 @@ export const Header = () => {
         <span>{selectedBoard.name}</span>{" "}
         <ChevronDown direction={isOpen ? "down" : "up"} />
       </LogoButton>
-      <StyledButton
-        onClick={() => console.log("plus clicked")}
-        sx={{
-          padding: 0,
-          width: "48px",
-          height: "32px",
-          ml: "auto",
-        }}
-      >
+      <StyledButton onClick={handleAddTask} variant="contained">
         <PlusIcon />
       </StyledButton>
 

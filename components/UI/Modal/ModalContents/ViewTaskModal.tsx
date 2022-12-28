@@ -14,6 +14,8 @@ import {
 } from "@mui/material";
 import { DotsIcon } from "assets/icons";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectCurrentBoard } from "store/boardSlice";
 import { Task, TaskStatus } from "types";
 
 interface ViewTaskModalProps {
@@ -44,6 +46,8 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
 export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
   const [taskStatus, setTaskStatus] = useState(task.status);
 
+  const currentBoard = useSelector(selectCurrentBoard);
+
   const handleChange = (event: SelectChangeEvent<typeof taskStatus>) => {
     const {
       target: { value },
@@ -51,8 +55,6 @@ export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
 
     setTaskStatus(value as TaskStatus);
   };
-
-  const statusToSet = [TaskStatus.TODO, TaskStatus.DOING, TaskStatus.DONE];
 
   return (
     <StyledBox>
@@ -99,7 +101,6 @@ export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
       )}
       <FormControl>
         <InputLabel id="status-label">Current Status</InputLabel>
-
         <Select
           labelId="status-label"
           id="status-name"
@@ -107,9 +108,9 @@ export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
           onChange={handleChange}
           input={<OutlinedInput label="Current Status" />}
         >
-          {statusToSet.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
+          {currentBoard.columns.map((column) => (
+            <MenuItem key={column.name} value={column.name}>
+              {column.name}
             </MenuItem>
           ))}
         </Select>
