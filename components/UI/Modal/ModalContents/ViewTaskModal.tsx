@@ -22,15 +22,6 @@ interface ViewTaskModalProps {
   task: Task;
 }
 
-const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  height: "100%",
-  gap: "24px",
-  padding: "24px",
-}));
-
 const SubtaskBox = styled(Box)<BoxProps>(({ theme }) => ({
   display: "flex",
   gap: "24px",
@@ -57,7 +48,7 @@ export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
   };
 
   return (
-    <StyledBox>
+    <>
       <Header>
         <Typography fontWeight="bold" fontSize={18} lineHeight="23px">
           {task.title}
@@ -115,6 +106,6 @@ export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
           ))}
         </Select>
       </FormControl>
-    </StyledBox>
+    </>
   );
 };
