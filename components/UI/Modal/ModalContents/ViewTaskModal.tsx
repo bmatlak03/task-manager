@@ -32,6 +32,7 @@ const SubtaskBox = styled(Box)<BoxProps>(({ theme }) => ({
 
 const Header = styled(Box)<BoxProps>(({ theme }) => ({
   display: "flex",
+  justifyContent: "space-between",
 }));
 
 export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
