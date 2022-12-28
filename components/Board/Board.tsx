@@ -1,7 +1,11 @@
 "use client";
 import { Box, BoxProps, styled } from "@mui/material";
 import { Modal } from "components/UI/Modal";
-import { AddTaskModal, ViewTaskModal } from "components/UI/Modal/ModalContents";
+import {
+  AddBoardModal,
+  AddTaskModal,
+  ViewTaskModal,
+} from "components/UI/Modal/ModalContents";
 import { ModalContent } from "constants/ModalContent";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "store";
@@ -50,6 +54,7 @@ export const Board = () => {
             <ViewTaskModal task={modalData} />
           )}
           {modalContent === ModalContent.ADD_TASK && <AddTaskModal />}
+          {modalContent === ModalContent.ADD_BOARD && <AddBoardModal />}
         </Modal>
       </BoardContainer>
     </>
