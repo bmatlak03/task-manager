@@ -41,6 +41,11 @@ export const Header = () => {
     dispatch(setIsModalVisible(true));
   };
 
+  const handleAddBoard = () => {
+    dispatch(setModalContent(ModalContent.ADD_BOARD));
+    dispatch(setIsModalVisible(true));
+  };
+
   const menuListStyles = {
     display: "flex",
     flexDirection: "column",
@@ -95,6 +100,12 @@ export const Header = () => {
             <BoardIcon /> <span>{board.name}</span>
           </StyledMenuItem>
         ))}
+        <StyledMenuItem sx={{ color: "primary.main" }} onClick={handleAddBoard}>
+          <BoardIcon />{" "}
+          <span>
+            <PlusIcon /> Create New Board
+          </span>
+        </StyledMenuItem>
         <ThemeControl />
       </Menu>
     </StyledHeader>
