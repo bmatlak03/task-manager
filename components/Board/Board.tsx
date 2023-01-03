@@ -1,6 +1,7 @@
 "use client";
 import { Box, BoxProps, styled } from "@mui/material";
 import { Modal } from "components/UI/Modal";
+import { Title } from "components/UI/Typography";
 import {
   AddBoardModal,
   AddTaskModal,
@@ -18,8 +19,12 @@ import {
   selectIsModalVisible,
   selectModalContent,
   selectModalData,
+  setIsModalVisible,
+  setModalContent,
 } from "store/uiSlice";
 import { BoardColumn } from "./BoardColumn";
+import { ModalButton } from "components/UI/Modal/ModalContents/styled/Styled";
+import { PlusIcon } from "assets/icons";
 
 const BoardContainer = styled(Box)<BoxProps>(() => ({
   display: "flex",
@@ -27,6 +32,14 @@ const BoardContainer = styled(Box)<BoxProps>(() => ({
   padding: "24px 16px",
   overflow: "scroll",
   height: "calc(100vh - 64px)",
+}));
+
+const CenteredBox = styled(Box)<BoxProps>(() => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "24px",
 }));
 
 export const Board = () => {
@@ -42,10 +55,22 @@ export const Board = () => {
   }, []);
 
   const handleModalClose = () => dispatch(resetModalState());
+  const handleAddColumn = () => {};
 
   return (
     <>
       <BoardContainer>
+        {!selectedBoard?.columns.length && (
+          <CenteredBox>
+            <Title color="primary.dark" textAlign="center">
+              This board is empty. Create a new column to get started
+            </Title>
+            <ModalButton variant="contained" onClick={handleAddColumn}>
+              <PlusIcon />{" "}
+              <span style={{ marginLeft: "12px" }}>Add New Column</span>
+            </ModalButton>
+          </CenteredBox>
+        )}
         {selectedBoard?.columns.map((columnData) => {
           const randomColor = Math.floor(Math.random() * 16777215).toString(16);
           return (

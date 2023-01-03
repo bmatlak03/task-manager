@@ -5,40 +5,53 @@ import { PlusIcon } from "assets/icons";
 import { inputPlaceholders } from "constants/Input";
 import { FieldWrapper, ModalButton } from "./styled/Styled";
 import { Subtitle } from "components/UI/Typography";
+import { v4 as uuidv4 } from "uuid";
 
 interface AddBoardModalProps {}
 
 type NewColumn = {
-  id: number;
+  id: string;
   name: string;
 };
 
 export const AddBoardModal = ({}: AddBoardModalProps) => {
+  const [boardName, setBoardName] = useState("");
   const [columns, setColumns] = useState<NewColumn[]>([]);
 
   const handleAddColumn = () => {
     setColumns((prevState) => [
-      ...columns,
+      ...prevState,
       {
-        id: prevState.length === 0 ? 0 : prevState[prevState.length - 1].id + 1,
+        id: uuidv4(),
         name: "",
       },
     ]);
   };
 
-  const handleRemoveColumn = (id: number) =>
+  const handleRemoveColumn = (id: string) =>
     setColumns((prevState) => prevState.filter((column) => column.id !== id));
+
+  const handleChangeColumnName = (id: string, value: string) => {
+    setColumns((prevState) =>
+      prevState.map((column) => {
+        if (column.id === id) return { ...column, name: value };
+        return column;
+      })
+    );
+  };
 
   return (
     <>
       <Typography fontWeight="bold" fontSize={18} lineHeight="23px">
-        Add New Task
+        Add New Board
       </Typography>
       <Subtitle>Board Name</Subtitle>
       <TextField
         variant="outlined"
         size="small"
         placeholder={inputPlaceholders.title}
+        value={boardName}
+        onChange={({ target }) => setBoardName(target.value)}
       />
       <Subtitle>Board Columns</Subtitle>
       {columns.map((column) => (
@@ -48,6 +61,9 @@ export const AddBoardModal = ({}: AddBoardModalProps) => {
             size="small"
             placeholder={inputPlaceholders.title}
             value={column.name}
+            onChange={({ target }) =>
+              handleChangeColumnName(column.id, target.value)
+            }
             fullWidth
           />
           <IconButton onClick={() => handleRemoveColumn(column.id)}>
