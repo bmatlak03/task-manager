@@ -91,7 +91,7 @@ export const AddTaskModal = ({}: AddTaskModalProps) => {
           onChange={() => {}}
           input={<OutlinedInput label="Status" />}
         >
-          {currentBoard.columns.map((column) => (
+          {currentBoard?.columns.map((column) => (
             <MenuItem key={column.name} value={column.name}>
               {column.name}
             </MenuItem>
