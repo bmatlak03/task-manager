@@ -1,9 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { boardData } from "constants/BoardData";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Board } from "types";
 import { RootState } from ".";
 
-const initialState = {
-  selectedBoard: boardData[0],
+interface SliceState {
+  boardsData: Board[];
+  selectedBoard: Board | null;
+}
+
+const initialState: SliceState = {
+  boardsData: [],
+  selectedBoard: null,
 };
 
 export const boardSlice = createSlice({
@@ -12,8 +18,12 @@ export const boardSlice = createSlice({
   reducers: {
     changeBoard(state, action) {
       state.selectedBoard =
-        boardData.find((board) => board.name === action.payload) ||
-        boardData[0];
+        state.boardsData.find((board) => board.name === action.payload) ||
+        state.boardsData[0];
+    },
+    setBoardsData(state, { payload }: PayloadAction<Board[]>) {
+      state.boardsData = payload;
+      state.selectedBoard = payload[0];
     },
   },
 });
@@ -21,6 +31,11 @@ export const boardSlice = createSlice({
 export const selectCurrentBoard = ({ boardSlice }: RootState) => {
   return boardSlice.selectedBoard;
 };
-export const { changeBoard } = boardSlice.actions;
+
+export const selectAllBoards = ({ boardSlice }: RootState) => {
+  return boardSlice.boardsData;
+};
+
+export const { changeBoard, setBoardsData } = boardSlice.actions;
 
 export default boardSlice.reducer;

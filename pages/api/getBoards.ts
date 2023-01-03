@@ -5,6 +5,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const boards = await prisma.board.findMany();
-  res.status(200).json(boards);
+  if (req.method === "GET") {
+    const boards = await prisma.board.findMany({
+      include: {
+        columns: true,
+      },
+    });
+    console.log(boards);
+    res.status(200).json(boards);
+  }
 }
