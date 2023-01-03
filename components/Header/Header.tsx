@@ -2,7 +2,6 @@
 import { Button, Menu } from "@mui/material";
 import { BoardIcon, ChevronDown, DotsIcon, Logo, PlusIcon } from "assets/icons";
 import { useState } from "react";
-import { boardData } from "constants/BoardData";
 import {
   LogoButton,
   StyledButton,
@@ -11,7 +10,11 @@ import {
 } from "./styled";
 import { ThemeControl } from "components/ThemeControl";
 import { useAppDispatch } from "store";
-import { changeBoard, selectCurrentBoard } from "store/boardSlice";
+import {
+  changeBoard,
+  selectAllBoards,
+  selectCurrentBoard,
+} from "store/boardSlice";
 import { useSelector } from "react-redux";
 import { Subtitle } from "components/UI/Typography";
 import { setIsModalVisible, setModalContent } from "store/uiSlice";
@@ -21,6 +24,7 @@ export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = Boolean(anchorEl);
 
+  const allBoards = useSelector(selectAllBoards);
   const selectedBoard = useSelector(selectCurrentBoard);
   const dispatch = useAppDispatch();
 
@@ -57,7 +61,7 @@ export const Header = () => {
     <StyledHeader position="sticky">
       <Logo />
       <LogoButton onClick={handleClickListItem}>
-        <span>{selectedBoard.name}</span>{" "}
+        <span>{selectedBoard?.name ?? "None"}</span>{" "}
         <ChevronDown direction={isOpen ? "down" : "up"} />
       </LogoButton>
       <StyledButton onClick={handleAddTask} variant="contained">
@@ -89,12 +93,12 @@ export const Header = () => {
         }}
       >
         <Subtitle pl="16px" letterSpacing={2.4} textTransform="uppercase">
-          All boards ({boardData.length})
+          All boards ({allBoards.length})
         </Subtitle>
-        {boardData.map((board) => (
+        {allBoards.map((board) => (
           <StyledMenuItem
             key={board.name}
-            selected={board.name === selectedBoard.name}
+            selected={board.name === selectedBoard?.name}
             onClick={() => handleMenuItemClick(board.name)}
           >
             <BoardIcon /> <span>{board.name}</span>

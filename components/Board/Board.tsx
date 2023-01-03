@@ -8,8 +8,10 @@ import {
   ViewTaskModal,
 } from "components/UI/Modal/ModalContents";
 import { ModalContent } from "constants/ModalContent";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "store";
+import { fetchBoards } from "store/actions/boardActions";
 import { selectCurrentBoard } from "store/boardSlice";
 import {
   resetModalState,
@@ -35,12 +37,16 @@ export const Board = () => {
 
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(fetchBoards());
+  }, []);
+
   const handleModalClose = () => dispatch(resetModalState());
 
   return (
     <>
       <BoardContainer>
-        {selectedBoard.columns.map((columnData) => {
+        {selectedBoard?.columns.map((columnData) => {
           const randomColor = Math.floor(Math.random() * 16777215).toString(16);
           return (
             <BoardColumn

@@ -30,26 +30,32 @@ export const BoardColumn = ({ columnData, dotColor }: BoardColumnProps) => {
         <TitleContainer>
           <Dot bgcolor={dotColor} />
           <Subtitle letterSpacing={2.4} textTransform="uppercase">
-            {columnData.name} ({columnData.tasks.length})
+            {columnData.name} ()
+            {/* {!!columnData.tasks.length && columnData.tasks.length}) */}
           </Subtitle>
         </TitleContainer>
 
         <StyledList>
-          {columnData.tasks.map((task) => (
-            <CardActionArea
-              key={task.title}
-              onClick={() => handleTaskClick(task)}
-            >
-              <StyledCard>
-                <Typography fontSize={15} lineHeight="18.9px" fontWeight="bold">
-                  {task.title}
-                </Typography>
-                {task.description && (
-                  <Subtitle color="primary.dark">{task.description}</Subtitle>
-                )}
-              </StyledCard>
-            </CardActionArea>
-          ))}
+          {columnData.tasks &&
+            columnData.tasks.map((task) => (
+              <CardActionArea
+                key={task.title}
+                onClick={() => handleTaskClick(task)}
+              >
+                <StyledCard>
+                  <Typography
+                    fontSize={15}
+                    lineHeight="18.9px"
+                    fontWeight="bold"
+                  >
+                    {task.title}
+                  </Typography>
+                  {task.description && (
+                    <Subtitle color="primary.dark">{task.description}</Subtitle>
+                  )}
+                </StyledCard>
+              </CardActionArea>
+            ))}
         </StyledList>
       </Box>
     </>

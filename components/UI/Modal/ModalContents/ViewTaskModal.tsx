@@ -100,7 +100,7 @@ export const ViewTaskModal = ({ task }: ViewTaskModalProps) => {
           onChange={handleChange}
           input={<OutlinedInput label="Current Status" />}
         >
-          {currentBoard.columns.map((column) => (
+          {currentBoard?.columns.map((column) => (
             <MenuItem key={column.name} value={column.name}>
               {column.name}
             </MenuItem>
