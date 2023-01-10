@@ -8,7 +8,15 @@ export default async function handler(
   if (req.method === "GET") {
     const boards = await prisma.board.findMany({
       include: {
-        columns: true,
+        columns: {
+          include: {
+            tasks: {
+              include: {
+                subtasks: true,
+              },
+            },
+          },
+        },
       },
     });
     console.log(boards);
