@@ -37,7 +37,7 @@ export const CustomTheme = ({ children }: PropsWithChildren) => {
     }
     const storageTheme = localStorage.getItem("theme") as PaletteMode;
     dispatch(setThemeMode(storageTheme));
-  }, [mode]);
+  }, [dispatch, mode]);
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
