@@ -44,6 +44,7 @@ export const MenuMobile = ({
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleAddBoard = () => {
     dispatch(setModalContent(ModalContent.ADD_BOARD));
     dispatch(setIsModalVisible(true));
