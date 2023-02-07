@@ -33,12 +33,7 @@ export const Header = () => {
     <StyledHeader position="sticky">
       {!matches && <Logo />}
       {matches ? (
-        <Typography
-          fontWeight={700}
-          fontSize={20}
-          lineHeight="25.2"
-          color="contrastText"
-        >
+        <Typography fontWeight={700} fontSize={20} color="contrastText">
           {selectedBoard?.name ?? "None"}
         </Typography>
       ) : (
