@@ -45,6 +45,7 @@ const NewColumnButton = styled(Button)<ButtonProps>(({ theme }) => ({
   display: "flex",
   gap: "12px",
   width: "280px",
+  minWidth: "180px",
   textTransform: "none",
   fontSize: "26px",
   fontWeight: "bold",
