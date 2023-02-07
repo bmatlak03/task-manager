@@ -1,5 +1,6 @@
 "use client";
-import { Box, CardActionArea, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import { TaskCard } from "components/TaskCard";
 import { Subtitle } from "components/UI/Typography";
 import { ModalContent } from "constants/ModalContent";
 import { useAppDispatch } from "store";
@@ -9,7 +10,7 @@ import {
   setModalData,
 } from "store/uiSlice";
 import { BoardColumn as BoardColumnType, Task } from "types";
-import { Dot, StyledCard, StyledList, TitleContainer } from "./styled";
+import { Dot, StyledList, TitleContainer } from "./styled";
 
 interface BoardColumnProps {
   columnData: BoardColumnType;
@@ -38,23 +39,11 @@ export const BoardColumn = ({ columnData, dotColor }: BoardColumnProps) => {
         <StyledList>
           {columnData.tasks &&
             columnData.tasks.map((task) => (
-              <CardActionArea
-                key={task.title}
-                onClick={() => handleTaskClick(task)}
-              >
-                <StyledCard>
-                  <Typography
-                    fontSize={15}
-                    lineHeight="18.9px"
-                    fontWeight="bold"
-                  >
-                    {task.title}
-                  </Typography>
-                  {task.description && (
-                    <Subtitle color="primary.dark">{task.description}</Subtitle>
-                  )}
-                </StyledCard>
-              </CardActionArea>
+              <TaskCard
+                key={task.id}
+                task={task}
+                handleClick={handleTaskClick}
+              />
             ))}
         </StyledList>
       </Box>
