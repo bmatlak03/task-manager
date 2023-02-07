@@ -6,12 +6,14 @@ import {
   Typography,
 } from "@mui/material";
 import { Subtitle } from "components/UI/Typography";
+import { ModalContent } from "constants/ModalContent";
+import { useAppDispatch } from "store";
+import {
+  setIsModalVisible,
+  setModalContent,
+  setModalData,
+} from "store/uiSlice";
 import { Task } from "types";
-
-interface TaskCardProps {
-  task: Task;
-  handleClick: (task: Task) => void;
-}
 
 const StyledCard = styled(Card)<CardProps>(() => ({
   display: "flex",
@@ -25,9 +27,21 @@ const StyledCard = styled(Card)<CardProps>(() => ({
   backgroundImage: "none",
 }));
 
-export const TaskCard = ({ task, handleClick }: TaskCardProps) => {
+interface TaskCardProps {
+  task: Task;
+}
+
+export const TaskCard = ({ task }: TaskCardProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleTaskClick = (task: Task) => {
+    dispatch(setModalContent(ModalContent.VIEW_TASK));
+    dispatch(setModalData(task));
+    dispatch(setIsModalVisible(true));
+  };
+
   return (
-    <CardActionArea key={task.title} onClick={() => handleClick(task)}>
+    <CardActionArea key={task.title} onClick={() => handleTaskClick(task)}>
       <StyledCard>
         <Typography fontSize={15} lineHeight="18.9px" fontWeight="bold">
           {task.title}
