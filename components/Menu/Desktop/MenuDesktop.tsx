@@ -10,8 +10,11 @@ import {
 import { BoardIcon, Logo, PlusIcon } from "assets/icons";
 import { ThemeControl } from "components/ThemeControl";
 import { Subtitle } from "components/UI/Typography";
+import { ModalContent } from "constants/ModalContent";
 import { useSelector } from "react-redux";
+import { useAppDispatch } from "store";
 import { selectAllBoards, selectCurrentBoard } from "store/boardSlice";
+import { setIsModalVisible, setModalContent } from "store/uiSlice";
 import { StyledMenuItem } from "../Styled";
 
 interface MenuDesktopProps {}
@@ -50,6 +53,13 @@ export const MenuDesktop = ({}: MenuDesktopProps) => {
   const selectedBoard = useSelector(selectCurrentBoard);
   const allBoards = useSelector(selectAllBoards);
 
+  const dispatch = useAppDispatch();
+
+  const handleAddBoard = () => {
+    dispatch(setModalContent(ModalContent.ADD_BOARD));
+    dispatch(setIsModalVisible(true));
+  };
+
   return (
     <MenuContainer>
       <HeaderBox>
@@ -77,7 +87,10 @@ export const MenuDesktop = ({}: MenuDesktopProps) => {
               <BoardIcon /> <span>{board.name}</span>
             </StyledMenuItem>
           ))}
-          <StyledMenuItem sx={{ color: "primary.main" }} onClick={() => {}}>
+          <StyledMenuItem
+            sx={{ color: "primary.main" }}
+            onClick={handleAddBoard}
+          >
             <BoardIcon />{" "}
             <span>
               <PlusIcon /> Create New Board
