@@ -18,6 +18,7 @@ export const StyledCard = styled(Card)<CardProps>(({ theme }) => ({
   padding: "16px",
   gap: "8px",
   borderRadius: "10px",
+  backgroundImage: "none",
 }));
 
 export const Dot = styled(Box)<BoxProps>(({ theme }) => ({

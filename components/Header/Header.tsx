@@ -1,5 +1,12 @@
 "use client";
-import { Button, Menu } from "@mui/material";
+import {
+  Box,
+  Button,
+  Menu,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { BoardIcon, ChevronDown, DotsIcon, Logo, PlusIcon } from "assets/icons";
 import { useState } from "react";
 import {
@@ -23,6 +30,9 @@ import { ModalContent } from "constants/ModalContent";
 export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpen = Boolean(anchorEl);
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
 
   const allBoards = useSelector(selectAllBoards);
   const selectedBoard = useSelector(selectCurrentBoard);
@@ -59,11 +69,22 @@ export const Header = () => {
 
   return (
     <StyledHeader position="sticky">
-      <Logo />
-      <LogoButton onClick={handleClickListItem}>
-        <span>{selectedBoard?.name ?? "None"}</span>{" "}
-        <ChevronDown direction={isOpen ? "down" : "up"} />
-      </LogoButton>
+      {!matches && <Logo />}
+      {matches ? (
+        <Typography
+          fontWeight={700}
+          fontSize={20}
+          lineHeight="25.2"
+          color="contrastText"
+        >
+          {selectedBoard?.name ?? "None"}
+        </Typography>
+      ) : (
+        <LogoButton onClick={handleClickListItem}>
+          <span>{selectedBoard?.name ?? "None"}</span>{" "}
+          <ChevronDown direction={isOpen ? "down" : "up"} />
+        </LogoButton>
+      )}
       <StyledButton onClick={handleAddTask} variant="contained">
         <PlusIcon />
       </StyledButton>
@@ -110,7 +131,9 @@ export const Header = () => {
             <PlusIcon /> Create New Board
           </span>
         </StyledMenuItem>
-        <ThemeControl />
+        <Box pl={"24px"}>
+          <ThemeControl />
+        </Box>
       </Menu>
     </StyledHeader>
   );

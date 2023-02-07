@@ -19,8 +19,6 @@ import {
   selectIsModalVisible,
   selectModalContent,
   selectModalData,
-  setIsModalVisible,
-  setModalContent,
 } from "store/uiSlice";
 import { BoardColumn } from "./BoardColumn";
 import { ModalButton } from "components/UI/Modal/ModalContents/styled/Styled";
@@ -32,6 +30,7 @@ const BoardContainer = styled(Box)<BoxProps>(() => ({
   padding: "24px 16px",
   overflow: "scroll",
   height: "calc(100vh - 64px)",
+  width: "100%",
 }));
 
 const CenteredBox = styled(Box)<BoxProps>(() => ({
@@ -40,6 +39,7 @@ const CenteredBox = styled(Box)<BoxProps>(() => ({
   justifyContent: "center",
   alignItems: "center",
   gap: "24px",
+  width: "100%",
 }));
 
 export const Board = () => {
@@ -52,45 +52,43 @@ export const Board = () => {
 
   useEffect(() => {
     dispatch(fetchBoards());
-  }, []);
+  }, [dispatch]);
 
   const handleModalClose = () => dispatch(resetModalState());
   const handleAddColumn = () => {};
 
   return (
-    <>
-      <BoardContainer>
-        {!selectedBoard?.columns.length && (
-          <CenteredBox>
-            <Title color="primary.dark" textAlign="center">
-              This board is empty. Create a new column to get started
-            </Title>
-            <ModalButton variant="contained" onClick={handleAddColumn}>
-              <PlusIcon />{" "}
-              <span style={{ marginLeft: "12px" }}>Add New Column</span>
-            </ModalButton>
-          </CenteredBox>
+    <BoardContainer>
+      {!selectedBoard?.columns.length && (
+        <CenteredBox>
+          <Title color="primary.dark" textAlign="center">
+            This board is empty. Create a new column to get started
+          </Title>
+          <ModalButton variant="contained" onClick={handleAddColumn}>
+            <PlusIcon />{" "}
+            <span style={{ marginLeft: "12px" }}>Add New Column</span>
+          </ModalButton>
+        </CenteredBox>
+      )}
+      {selectedBoard?.columns.map((columnData) => {
+        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        return (
+          <BoardColumn
+            columnData={columnData}
+            key={columnData.name}
+            dotColor={`#${randomColor}`}
+          />
+        );
+      })}
+      <Modal isOpen={isModalVisible} onClose={handleModalClose}>
+        {modalContent === ModalContent.VIEW_TASK && modalData && (
+          <ViewTaskModal task={modalData} />
         )}
-        {selectedBoard?.columns.map((columnData) => {
-          const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-          return (
-            <BoardColumn
-              columnData={columnData}
-              key={columnData.name}
-              dotColor={`#${randomColor}`}
-            />
-          );
-        })}
-        <Modal isOpen={isModalVisible} onClose={handleModalClose}>
-          {modalContent === ModalContent.VIEW_TASK && modalData && (
-            <ViewTaskModal task={modalData} />
-          )}
-          {modalContent === ModalContent.ADD_TASK && <AddTaskModal />}
-          {modalContent === ModalContent.ADD_BOARD && <AddBoardModal />}
-          {/* should be dynamic value from slice */}
-          {modalContent === ModalContent.DELETE && <DeleteModal type="board" />}
-        </Modal>
-      </BoardContainer>
-    </>
+        {modalContent === ModalContent.ADD_TASK && <AddTaskModal />}
+        {modalContent === ModalContent.ADD_BOARD && <AddBoardModal />}
+        {/* should be dynamic value from slice */}
+        {modalContent === ModalContent.DELETE && <DeleteModal type="board" />}
+      </Modal>
+    </BoardContainer>
   );
 };

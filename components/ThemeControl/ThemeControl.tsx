@@ -15,8 +15,6 @@ const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
   width: "100%",
   borderRadius: 5,
-  marginLeft: "12px",
-  marginTop: "24px",
   color: theme.palette.primary.dark,
 }));
 
