@@ -16,7 +16,7 @@ export const colors = {
   },
   secondary: {
     dark: {
-      main: "#FFFFFF",
+      main: "#3E3F4E",
       contrastText: "#635FC7",
     },
     light: {
