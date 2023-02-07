@@ -1,5 +1,5 @@
 "use client";
-import { Box, BoxProps, styled } from "@mui/material";
+import { Box, BoxProps, Button, ButtonProps, styled } from "@mui/material";
 import { Modal } from "components/UI/Modal";
 import { Title } from "components/UI/Typography";
 import {
@@ -39,6 +39,20 @@ const CenteredBox = styled(Box)<BoxProps>(() => ({
   alignItems: "center",
   gap: "24px",
   width: "100%",
+}));
+
+const NewColumnButton = styled(Button)<ButtonProps>(({ theme }) => ({
+  display: "flex",
+  gap: "12px",
+  width: "280px",
+  textTransform: "none",
+  fontSize: "26px",
+  fontWeight: "bold",
+  backgroundColor:
+    theme.palette.mode === "dark"
+      ? theme.palette.secondary.dark
+      : theme.palette.secondary.light,
+  color: theme.palette.primary.dark,
 }));
 
 export const Board = () => {
@@ -82,7 +96,11 @@ export const Board = () => {
           />
         );
       })}
-
+      {!isLoading && selectedBoard && !isError && (
+        <NewColumnButton>
+          <PlusIcon /> New Column
+        </NewColumnButton>
+      )}
       <Modal isOpen={isModalVisible} onClose={handleModalClose}>
         {modalContent === ModalContent.VIEW_TASK && modalData && (
           <ViewTaskModal task={modalData} />
