@@ -1,15 +1,29 @@
 "use client";
-import { CssBaseline } from "@mui/material";
+import {
+  Box,
+  BoxProps,
+  CssBaseline,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { CustomTheme } from "components/CustomTheme";
 import { Header } from "components/Header";
+import { MenuDesktop } from "components/Menu/Desktop/MenuDesktop";
 import { Provider } from "react-redux";
 import { store } from "store";
+
+const ContentWrapper = styled(Box)<BoxProps>(({ theme }) => ({
+  display: theme.breakpoints.up("md") ? "flex" : "block",
+}));
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <html>
       <head>
@@ -21,8 +35,17 @@ export default function RootLayout({
         <CustomTheme>
           <CssBaseline />
           <body>
-            <Header />
-            <main>{children}</main>
+            <ContentWrapper>
+              {matches && <MenuDesktop />}
+              <Box
+                sx={{
+                  width: "100%",
+                }}
+              >
+                <Header />
+                <main>{children}</main>
+              </Box>
+            </ContentWrapper>
           </body>
         </CustomTheme>
       </Provider>

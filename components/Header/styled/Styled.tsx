@@ -17,7 +17,10 @@ export const StyledHeader = styled(AppBar)<AppBarProps>(({ theme }) => ({
   alignItems: "center",
   flexDirection: "row",
   backgroundColor: theme.palette.background.paper,
-  color: theme.palette.common.black,
+  backgroundImage: "none",
+  boxShadow: "none",
+  borderBottom: `2px solid ${theme.palette.secondary.main}`,
+  color: "inherit",
 }));
 
 export const LogoButton = styled(Button)<ButtonProps>(({ theme }) => ({
