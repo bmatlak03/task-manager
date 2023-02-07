@@ -8,11 +8,11 @@ import {
   Typography,
 } from "@mui/material";
 import { BoardIcon, Logo, PlusIcon } from "assets/icons";
-import { StyledMenuItem } from "components/Header/styled";
 import { ThemeControl } from "components/ThemeControl";
 import { Subtitle } from "components/UI/Typography";
 import { useSelector } from "react-redux";
 import { selectAllBoards, selectCurrentBoard } from "store/boardSlice";
+import { StyledMenuItem } from "../Styled";
 
 interface MenuDesktopProps {}
 
