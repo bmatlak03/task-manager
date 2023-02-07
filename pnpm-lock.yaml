@@ -16,6 +16,7 @@ specifiers:
   '@types/uuid': ^9.0.0
   eslint: 8.30.0
   eslint-config-next: 13.0.7
+  husky: ^8.0.3
   next: ^13.1.1
   prisma: ^4.8.1
   react: 18.2.0
@@ -40,6 +41,7 @@ dependencies:
   '@types/react-dom': 18.0.9
   eslint: 8.30.0
   eslint-config-next: 13.0.7_lzzuuodtsqwxnvqeq4g4likcqa
+  husky: 8.0.3
   next: 13.1.1_3duxcpitbtplz62feflag7fwby
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1871,6 +1873,12 @@ packages:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
       react-is: 16.13.1
+    dev: false
+
+  /husky/8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: false
 
   /ignore/5.2.4:
