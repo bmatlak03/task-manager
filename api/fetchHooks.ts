@@ -1,8 +1,8 @@
 // Fetch function
 import { useQuery } from "@tanstack/react-query";
+import { fetchBoards } from "./fetchFunctions";
 import { useAppDispatch } from "store";
 import { setBoardsData } from "store/boardSlice";
-import { fetchBoards } from "./fetchFunctions";
 // Types
 
 export const useFetchBoards = () => {
