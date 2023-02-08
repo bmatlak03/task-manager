@@ -1,9 +1,9 @@
 "use client";
 import { Box } from "@mui/material";
+import { Dot, StyledList, TitleContainer } from "./styled";
 import { TaskCard } from "components/TaskCard";
 import { Subtitle } from "components/UI/Typography";
 import { BoardColumn as BoardColumnType } from "types";
-import { Dot, StyledList, TitleContainer } from "./styled";
 
 interface BoardColumnProps {
   columnData: BoardColumnType;

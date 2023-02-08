@@ -1,11 +1,11 @@
 "use client";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Plus_Jakarta_Sans } from "@next/font/google";
 import { PropsWithChildren, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Plus_Jakarta_Sans } from "@next/font/google";
-import { PaletteMode, selectThemeMode, setThemeMode } from "store/themeSlice";
 import { colors } from "constants/Theme";
 import { useAppDispatch } from "store";
+import { PaletteMode, selectThemeMode, setThemeMode } from "store/themeSlice";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   weight: ["400", "700"],

@@ -1,14 +1,14 @@
 "use client";
 import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { ChevronDown, DotsIcon, Logo, PlusIcon } from "assets/icons";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { LogoButton, StyledButton, StyledHeader } from "./styled";
+import { ChevronDown, DotsIcon, Logo, PlusIcon } from "assets/icons";
+import { MenuMobile } from "components/Menu/Mobile";
+import { ModalContent } from "constants/ModalContent";
 import { useAppDispatch } from "store";
 import { selectCurrentBoard } from "store/boardSlice";
-import { useSelector } from "react-redux";
 import { setIsModalVisible, setModalContent } from "store/uiSlice";
-import { ModalContent } from "constants/ModalContent";
-import { MenuMobile } from "components/Menu/Mobile";
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

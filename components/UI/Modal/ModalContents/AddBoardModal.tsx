@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { IconButton, TextField, Typography } from "@mui/material";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { PlusIcon } from "assets/icons";
-import { inputPlaceholders } from "constants/Input";
-import { FieldWrapper, ModalButton } from "./styled/Styled";
-import { Subtitle } from "components/UI/Typography";
+import { IconButton, TextField, Typography } from "@mui/material";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { FieldWrapper, ModalButton } from "./styled/Styled";
+import { PlusIcon } from "assets/icons";
+import { Subtitle } from "components/UI/Typography";
+import { inputPlaceholders } from "constants/Input";
 
 interface AddBoardModalProps {}
 

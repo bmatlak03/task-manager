@@ -9,13 +9,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { FieldWrapper, ModalButton } from "./styled/Styled";
 import { PlusIcon } from "assets/icons";
 import { Subtitle } from "components/UI/Typography";
 import { inputPlaceholders } from "constants/Input";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 import { selectCurrentBoard } from "store/boardSlice";
-import { FieldWrapper, ModalButton } from "./styled/Styled";
 
 interface AddTaskModalProps {}
 

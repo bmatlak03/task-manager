@@ -12,9 +12,9 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { DotsIcon } from "assets/icons";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { DotsIcon } from "assets/icons";
 import { selectCurrentBoard } from "store/boardSlice";
 import { Task } from "types";
 

@@ -1,12 +1,12 @@
 "use client";
-import { Box, BoxProps, styled, Switch } from "@mui/material";
 import {
   LightMode as LightModeIcon,
   DarkMode as DarkModeIcon,
 } from "@mui/icons-material";
+import { Box, BoxProps, styled, Switch } from "@mui/material";
+import { useSelector } from "react-redux";
 import { useAppDispatch } from "store";
 import { PaletteMode, selectThemeMode, toggleTheme } from "store/themeSlice";
-import { useSelector } from "react-redux";
 
 const StyledBox = styled(Box)<BoxProps>(({ theme }) => ({
   display: "flex",

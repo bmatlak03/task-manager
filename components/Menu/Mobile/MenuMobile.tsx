@@ -1,9 +1,10 @@
 import { Box, Menu } from "@mui/material";
+import { useSelector } from "react-redux";
+import { StyledMenuItem } from "../Styled";
 import { BoardIcon, PlusIcon } from "assets/icons";
 import { ThemeControl } from "components/ThemeControl";
 import { Subtitle } from "components/UI/Typography";
 import { ModalContent } from "constants/ModalContent";
-import { useSelector } from "react-redux";
 import { useAppDispatch } from "store";
 import {
   changeBoard,
@@ -11,7 +12,6 @@ import {
   selectCurrentBoard,
 } from "store/boardSlice";
 import { setIsModalVisible, setModalContent } from "store/uiSlice";
-import { StyledMenuItem } from "../Styled";
 
 const menuListStyles = {
   display: "flex",

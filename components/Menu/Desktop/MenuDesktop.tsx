@@ -7,15 +7,15 @@ import {
   styled,
   Typography,
 } from "@mui/material";
+import { useSelector } from "react-redux";
+import { StyledMenuItem } from "../Styled";
 import { BoardIcon, Logo, PlusIcon } from "assets/icons";
 import { ThemeControl } from "components/ThemeControl";
 import { Subtitle } from "components/UI/Typography";
 import { ModalContent } from "constants/ModalContent";
-import { useSelector } from "react-redux";
 import { useAppDispatch } from "store";
 import { selectAllBoards, selectCurrentBoard } from "store/boardSlice";
 import { setIsModalVisible, setModalContent } from "store/uiSlice";
-import { StyledMenuItem } from "../Styled";
 
 interface MenuDesktopProps {}
 

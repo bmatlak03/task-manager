@@ -1,6 +1,35 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "no-unused-vars": ["error", { "varsIgnorePattern": "^_", "args": "none", "ignoreRestSiblings": true }]
+    "no-unused-vars": [
+      "error",
+      { "varsIgnorePattern": "^_", "args": "none", "ignoreRestSiblings": true }
+    ],
+    "prefer-const": "error",
+    "no-nested-ternary": "error",
+    "react/self-closing-comp": ["error", { "component": true, "html": true }],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**/**",
+            "group": "parent",
+            "position": "before"
+          }
+        ],
+        "alphabetize": { "order": "asc" }
+      }
+    ],
+    "react-hooks/exhaustive-deps": "error"
   }
 }

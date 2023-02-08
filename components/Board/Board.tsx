@@ -1,14 +1,19 @@
 "use client";
+import { useSelector } from "react-redux";
+import { BoardColumn } from "./BoardColumn";
+import { BoardContainer, CenteredBox, NewColumnButton } from "./Styled";
+import { useFetchBoards } from "api/fetchHooks";
+import { PlusIcon } from "assets/icons";
 import { Modal } from "components/UI/Modal";
-import { Title } from "components/UI/Typography";
 import {
   AddBoardModal,
   AddTaskModal,
   DeleteModal,
   ViewTaskModal,
 } from "components/UI/Modal/ModalContents";
+import { ModalButton } from "components/UI/Modal/ModalContents/styled/Styled";
+import { Title } from "components/UI/Typography";
 import { ModalContent } from "constants/ModalContent";
-import { useSelector } from "react-redux";
 import { useAppDispatch } from "store";
 import { selectCurrentBoard } from "store/boardSlice";
 import {
@@ -17,11 +22,6 @@ import {
   selectModalContent,
   selectModalData,
 } from "store/uiSlice";
-import { BoardColumn } from "./BoardColumn";
-import { ModalButton } from "components/UI/Modal/ModalContents/styled/Styled";
-import { PlusIcon } from "assets/icons";
-import { useFetchBoards } from "api/fetchHooks";
-import { BoardContainer, CenteredBox, NewColumnButton } from "./Styled";
 
 export const Board = () => {
   const selectedBoard = useSelector(selectCurrentBoard);

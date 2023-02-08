@@ -1,6 +1,6 @@
 import { Box, BoxProps, styled, Typography } from "@mui/material";
-import { Title } from "components/UI/Typography";
 import { ModalButton } from "./styled/Styled";
+import { Title } from "components/UI/Typography";
 
 interface DeleteModalProps {
   type: "board" | "task";
